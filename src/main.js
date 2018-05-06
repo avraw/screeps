@@ -1,23 +1,10 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
+var maintainer = require('maintainer');
 
 module.exports.loop = function () {
-
-    var tower = Game.getObjectById('e514290773b4c2e8deb418ad');
-    if(tower) {
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
-        });
-        if(closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
-
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
-            tower.attack(closestHostile);
-        }
-    }
+    maintainer.road(); // maintain roads
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
