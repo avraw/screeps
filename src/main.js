@@ -4,7 +4,7 @@ var roleBuilder = require('role.builder');
 var maintainer = require('maintainer');
 
 module.exports.loop = function () {
-    maintainer.road(); // maintain roads
+    maintainer.roads(Game.spawns['Spawn1']); // maintain roads
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
